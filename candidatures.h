@@ -47,6 +47,8 @@ private slots:
 
 
 
+    void on_Supprimer_candidature_clicked();
+
 private:
     int id_candidature, id_offre,id_candidat;
     QDate date_candidature;

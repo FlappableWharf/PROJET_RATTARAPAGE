@@ -36,7 +36,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QDateEdit" name="dateEdit">
+  <widget class="QDateTimeEdit" name="dateTimeEdit">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -164,8 +164,21 @@
     </rect>
    </property>
   </widget>
+  <widget class="QPushButton" name="Supprimer_candidature">
+   <property name="geometry">
+    <rect>
+     <x>1270</x>
+     <y>670</y>
+     <width>112</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Supprimer</string>
+   </property>
+  </widget>
   <zorder>textEditStatus</zorder>
-  <zorder>dateEdit</zorder>
+  <zorder>dateTimeEdit</zorder>
   <zorder>listView</zorder>
   <zorder>lineEdit</zorder>
   <zorder>label</zorder>
@@ -177,6 +190,7 @@
   <zorder>label_5</zorder>
   <zorder>lineEdit_2</zorder>
   <zorder>listView_2</zorder>
+  <zorder>Supprimer_candidature</zorder>
  </widget>
  <resources/>
  <connections/>

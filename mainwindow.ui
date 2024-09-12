@@ -13,6 +13,180 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">/* General Styling */
+QWidget {
+    background-color: #f2f2f2;
+    font-family: &quot;Arial&quot;, sans-serif;
+}
+
+/* QLabel Styling */
+QLabel {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4d4d4d;
+    padding: 3px;
+}
+
+QLabel[role=&quot;title&quot;] {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+    padding: 5px;
+}
+
+QLabel[role=&quot;subtitle&quot;] {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666666;
+    padding: 4px;
+}
+
+/* Tabs */
+QTabWidget::pane {
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+}
+
+QTabBar::tab {
+    background-color: #ffffff;
+    color: #4d4d4d;
+    padding: 10px;
+    margin-right: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-weight: bold;
+}
+
+QTabBar::tab:selected {
+    background-color: #4CAF50;
+    color: #ffffff;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}
+
+QPushButton:disabled {
+    background-color: #d9d9d9;
+    color: #a6a6a6;
+}
+
+/* Search Input */
+QLineEdit {
+    padding: 5px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+/* ComboBox (for sorting) */
+QComboBox {
+    padding: 5px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+/* Table Styling */
+QTableView {
+    border: 1px solid #cccccc;
+    gridline-color: #e6e6e6;
+    background-color: #ffffff;
+    alternate-background-color: #f9f9f9;
+}
+
+QHeaderView::section {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px;
+    border: none;
+    font-weight: bold;
+}
+
+QTableView::item {
+    padding: 5px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+QTableView::item:selected {
+    background-color: #d9f2d9;
+    color: #333333;
+}
+
+/* Checkbox Styling in Table */
+QCheckBox {
+    spacing: 5px;
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+}
+
+QCheckBox::indicator:unchecked {
+    border: 1px solid #cccccc;
+    background-color: white;
+}
+
+QCheckBox::indicator:checked {
+    border: 1px solid #4CAF50;
+    background-color: #4CAF50;
+}
+
+/* Modify/Delete Buttons */
+QPushButton#modifyButton {
+    background-color: #ffc107;
+    color: white;
+}
+
+QPushButton#deleteButton {
+    background-color: #f44336;
+    color: white;
+}
+
+QPushButton#modifyButton:hover {
+    background-color: #e0a800;
+}
+
+QPushButton#deleteButton:hover {
+    background-color: #e53935;
+}
+
+/* Additional widgets styling */
+QTextEdit{
+    background-color:white;
+}
+
+QLineEdit{
+    background-color:white;
+}
+
+QDateEdit{
+    background-color:white;
+}
+
+QDateTimeEdit{
+    background-color:white;
+}
+
+QListView{
+    background-color:white;
+}
+
+QComboBox{
+    background-color:white;
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
     <property name="enabled">
@@ -33,10 +207,10 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="tabShape">
-     <enum>QTabWidget::Rounded</enum>
+     <enum>QTabWidget::Triangular</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
@@ -70,7 +244,7 @@
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="tabShape">
-       <enum>QTabWidget::Triangular</enum>
+       <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
        <number>1</number>
@@ -385,7 +559,7 @@
        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="tabShape">
-       <enum>QTabWidget::Triangular</enum>
+       <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -1669,7 +1843,7 @@
      <x>0</x>
      <y>0</y>
      <width>1601</width>
-     <height>30</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>

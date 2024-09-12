@@ -4,6 +4,8 @@
 #include <QSortFilterProxyModel>
 #include <QMessageBox>
 #include <QDebug>
+#include <QDesktopServices>
+#include <QUrl>
 
 Candidatures::Candidatures(QWidget *parent) :
     QDialog(parent),
@@ -233,7 +235,7 @@ void Candidatures::on_Ajouter_candidature_clicked()
 
     QStringList candidatDetails = candidatInfo.split(" | ");
     QString telephone = candidatDetails[1].trimmed();
-    QString email = candidatDetails[2].trimmed();
+    QString email = candidatDetails[2].trimmed(); // Get candidate's email
 
     QStringList offreDetails = offreInfo.split(" | ");
     QString titre = offreDetails[1].trimmed();
@@ -280,19 +282,50 @@ void Candidatures::on_Ajouter_candidature_clicked()
     qDebug() << "Candidate ID:" << id_candidat;
     qDebug() << "Offer ID:" << id_offre;
 
-    QDate date_candidature = ui->dateEdit->date();
+    QDate date_candidature = ui->dateTimeEdit->date();
     QString status = ui->textEditStatus->toPlainText();
 
     Candidatures candidature(id_offre, id_candidat, date_candidature, status);
     if (candidature.ajouter()) {
         QMessageBox::information(this, "Success", "Candidature added successfully.");
         ui->tableView->setModel(this->afficher());
+
+        // Send email to candidate
+        QString subject = "New Job Application Confirmation";
+        QString body = QString("Dear %1,\n\nThank you for applying to the position of %2 at %3.\n\nBest regards,\nYour Company")
+                        .arg(candidatDetails[0]) // Candidate's name
+                        .arg(titre) // Job title
+                        .arg(nom_entreprise); // Company name
+
+        QUrl mailtoUrl = QUrl(QString("mailto:%1?subject=%2&body=%3")
+                               .arg(email)
+                               .arg(subject)
+                               .arg(body));
+
+        QDesktopServices::openUrl(mailtoUrl); // Open the default email client with pre-filled email details
+
     } else {
         QMessageBox::critical(this, "Error", "Failed to add candidature.");
     }
+
+    // Clear the input fields
     ui->lineEdit->clear();
     ui->lineEdit_2->clear();
     ui->textEditStatus->clear();
-    ui->dateEdit->clear();
+    ui->dateTimeEdit->clear();
 }
 
+
+void Candidatures::on_Supprimer_candidature_clicked() {
+    // Get the model from the tableView
+    QStandardItemModel *model = static_cast<QStandardItemModel *>(ui->tableView->model());
+
+    // Call the supprimer method to delete the selected candidatures
+    if (this->supprimer(model)) {
+        // Refresh the tableView with the updated model after deletion
+        ui->tableView->setModel(this->afficher());
+    } else {
+        // Show an error message if deletion fails
+        QMessageBox::critical(this, "Error", "Failed to delete candidature(s).");
+    }
+}
